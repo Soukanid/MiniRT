@@ -13,6 +13,11 @@ int main()
   /*put_pixel(30, 30, 0xffffff, mlx);*/
   mlx.img.x_start = 100;
   mlx.img.y_start = 100;
+  int matrix[4][4];
+
+  int i = 0, j = 0;
+  while (i < 4)
+ 
   put_circle(mlx, 0xffffff); 
   mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_wind, mlx.img.img_ptr, mlx.img.x_start, mlx.img.y_start);
   mlx_loop(mlx.mlx_ptr);
