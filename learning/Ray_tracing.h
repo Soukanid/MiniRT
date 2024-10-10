@@ -18,6 +18,10 @@ typedef struct s_img
   int size_line;
   char  *data;
   int endian;
+  int x_start;
+  int y_start;
+  int img_width;
+  int img_hight;
 } t_img;
 
 typedef struct s_mlx
@@ -46,4 +50,7 @@ typedef struct color
 
 void  put_pixel(int x, int y, int color, t_mlx mlx);
   
+int distance_two_point(int x1, int y1, int x2, int y2);
+
+ void put_circle(t_mlx mlx, int color);
 #endif

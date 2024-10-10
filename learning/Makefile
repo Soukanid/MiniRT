@@ -2,7 +2,7 @@ NAME = rayTracing
 
 CFLAG = -Wall -Wextra -Werror -lm
 
-LIBMLX = ~/libmlx/linux
+LIBMLX = ./libmlx/linux
 
 LIBMLX_FLAGS = -lmlx -lXext -lX11 -lm -lz
 
