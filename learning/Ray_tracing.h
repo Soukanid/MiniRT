@@ -8,6 +8,14 @@
 #include <unistd.h>
 #include <stdbool.h>
 #include <math.h>
+#include "mlx.h"
+
+typedef struct s_mlx
+{
+  void *mlx_ptr;
+  void *mlx_wind;
+  void *img_ptr;
+} t_mlx;
 
 typedef struct tuple
 {
