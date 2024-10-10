@@ -10,12 +10,23 @@
 #include <math.h>
 #include "mlx.h"
 
+
+typedef struct s_img
+{
+  void *img_ptr;
+  int bpp;
+  int size_line;
+  char  *data;
+  int endian;
+} t_img;
+
 typedef struct s_mlx
 {
   void *mlx_ptr;
   void *mlx_wind;
-  void *img_ptr;
+  t_img img;
 } t_mlx;
+
 
 typedef struct tuple
 {
@@ -32,4 +43,7 @@ typedef struct color
   float blue;
 } rgb;
 
+
+void  put_pixel(int x, int y, int color, t_mlx mlx);
+  
 #endif
