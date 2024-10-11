@@ -31,7 +31,6 @@ typedef struct s_mlx
   t_img img;
 } t_mlx;
 
-
 typedef struct tuple
 {
   float x;
@@ -51,6 +50,8 @@ typedef struct color
 void  put_pixel(int x, int y, int color, t_mlx mlx);
   
 int distance_two_point(int x1, int y1, int x2, int y2);
-
- void put_circle(t_mlx mlx, int color);
+bool  compare_matrix(int mat1[][4], int mat2[][4], int hight, int width);
+tuple new_tuple(float x, float y, float z, float w);
+void put_circle(t_mlx mlx, int color);
+void test_matrix();
 #endif
