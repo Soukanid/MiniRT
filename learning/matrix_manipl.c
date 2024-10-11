@@ -72,15 +72,43 @@ void  transpose_matrix(int mat[][4], int mat_res[][4])
   int j;
 
   i = 0;
-  j = 0;
-  while (
+  while (i < 4)
+  {
+    j = 0;
+    while (j < 4)
+    {
+      mat_res[j][i] = mat[i][j];
+      j++;
+    }
+    i++;
+  }
 }
+
+void  print_matrix(int matrix[][4])
+{
+  int i;
+  int j;
+
+  i = 0;
+  while (i < 4)
+  {
+    j = 0;
+    while (j < 4)
+    {
+      printf("%d ", matrix[i][j]);
+      j++;
+    }
+    printf("\n");
+    i++;
+  }
+}
+
 void test_matrix()
 {
   int matrix[4][4];
-  tuple test;
+  /*tuple test;*/
 
-  test = new_tuple(1, 1, 1, 1);
+  /*test = new_tuple(1, 1, 1, 1);*/
   int i = 0, j = 0;
   while (i < 4)
   {
@@ -92,8 +120,10 @@ void test_matrix()
     }
     i++;
   }
-  tuple res = matrix_multiple_tuple(matrix, test);
-  printf("%f\n\n\n", res.w);
+  int resm[4][4];
+  print_matrix(matrix);
+  transpose_matrix(matrix, resm);
+  print_matrix(resm);
   compare_matrix(matrix, matrix, 4, 4);  
 }
 
