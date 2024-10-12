@@ -127,4 +127,84 @@ void test_matrix()
   compare_matrix(matrix, matrix, 4, 4);  
 }
 
+int determinant(int matrix[][2])
+{
+  int det;
+
+  det = matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+  return (det);
+}
+
+void  submatrix_tree(int matrix[][4], int res[][3],int line, int colmn)
+{
+  int i;
+  int j;
+  int k;
+  int l;
+
+  i = 0;
+  k = 0;
+  while(i < 4)
+  {
+    j = 0;
+    l = 0;
+    while (j < 4)
+    {
+      if (i != line && j != colmn)
+      {
+        res[k][l] = matrix[i][j];
+        l++;
+      }
+    }
+    i++;
+    if (line != i)
+      k++;
+  }
+}
+
+void  submatrix_two(int matrix[][3], int res[][2],int line, int colmn)
+{
+  int i;
+  int j;
+  int k;
+  int l;
+
+  i = 0;
+  k = 0;
+  while(i < 3)
+  {
+    j = 0;
+    l = 0;
+    while (j < 3)
+    {
+      if (i != line && j != colmn)
+      {
+        res[k][l] = matrix[i][j];
+        l++;
+      }
+    }
+    i++;
+    if (line != i)
+      k++;
+  }
+}
+
+int minor(int matrix[][3], int line, int colmn)
+{
+  int res_matrix[2][2];
+
+  submatrix_two(matrix, res_matrix, line, colmn);
+  return (determinant(res_matrix));
+}
+
+
+
+
+
+
+
+
+
+
+
 
