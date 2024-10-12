@@ -40,3 +40,5 @@ void  put_pixel(int x, int y, int color, t_mlx mlx)
   }
     
 }
+
+//this is just a test
