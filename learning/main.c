@@ -14,7 +14,8 @@ int main()
   mlx.img.x_start = 100;
   mlx.img.y_start = 100;
   put_circle(mlx, 0xffffff);
-  test_matrix(); 
+  /*test_matrix();*/
+  test_determinant();
   mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_wind, mlx.img.img_ptr, mlx.img.x_start, mlx.img.y_start);
   mlx_loop(mlx.mlx_ptr);
   

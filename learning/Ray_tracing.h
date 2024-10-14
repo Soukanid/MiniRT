@@ -54,4 +54,5 @@ bool  compare_matrix(int mat1[][4], int mat2[][4], int hight, int width);
 tuple new_tuple(float x, float y, float z, float w);
 void put_circle(t_mlx mlx, int color);
 void test_matrix();
+void test_determinant();
 #endif
