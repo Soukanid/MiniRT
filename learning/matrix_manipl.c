@@ -3,7 +3,7 @@
   //for now we don't have a clear idea how we are gonna fill that int**
   //but we are gonna see what we can do
 
-bool  compare_matrix(int mat1[][4], int mat2[][4], int hight, int width)
+bool  compare_matrix(float mat1[][4], float mat2[][4], int hight, int width)
 {
   int i;
   int j;
@@ -27,7 +27,7 @@ bool  compare_matrix(int mat1[][4], int mat2[][4], int hight, int width)
   return (true);
 }
 
-void  matrix_multiple_matrix(int mat1[][4], int mat2[][4], int width, int hight, int mat_res[][4])
+void  matrix_multiple_matrix(float mat1[][4], float mat2[][4], int width, int hight, float mat_res[][4])
 {
   int i;
   int j;
@@ -48,7 +48,7 @@ void  matrix_multiple_matrix(int mat1[][4], int mat2[][4], int width, int hight,
   }
 }
 
-tuple matrix_multiple_tuple(int mat[][4], tuple t)
+tuple matrix_multiple_tuple(float mat[][4], tuple t)
 {
   int i;
   int res[4];
@@ -65,7 +65,7 @@ tuple matrix_multiple_tuple(int mat[][4], tuple t)
   return (new_tuple(res[0], res[1], res[2], res[3]));
 }
 
-void  transpose_matrix(int mat[][4],int width, int hight, int mat_res[][4])
+void  transpose_matrix(float mat[][4],int width, int hight, float mat_res[][4])
 {
   int i;
   int j;
@@ -83,7 +83,7 @@ void  transpose_matrix(int mat[][4],int width, int hight, int mat_res[][4])
   }
 }
 
-void  print_matrix(int matrix[][4], int width, int hight)
+void  print_matrix(float matrix[][4], int width, int hight)
 {
   int i;
   int j;
@@ -94,39 +94,39 @@ void  print_matrix(int matrix[][4], int width, int hight)
     j = 0;
     while (j < width)
     {
-      printf("%d ", matrix[i][j]);
+      printf("%f ", matrix[i][j]);
       j++;
     }
     printf("\n");
     i++;
   }
 }
+/**/
+/*void test_matrix()*/
+/*{*/
+/*  int matrix[4][4];*/
+/*  tuple test;*/
+/**/
+/*  test = new_tuple(1, 1, 1, 1);*/
+/*  int i = 0, j = 0;*/
+/*  while (i < 4)*/
+/*  {*/
+/*    j = 0;*/
+/*    while(j < 4)*/
+/*    {*/
+/*      matrix[i][j] = j;*/
+/*      j++;*/
+/*    }*/
+/*    i++;*/
+/*  }*/
+/*  int resm[4][4];*/
+/*  print_matrix(matrix, 4, 4);*/
+/*  transpose_matrix(matrix, 4, 4, resm);*/
+/*  print_matrix(resm, 4, 4);*/
+/*  compare_matrix(matrix, matrix, 4, 4);  */
+/*}*/
 
-void test_matrix()
-{
-  int matrix[4][4];
-  /*tuple test;*/
-
-  /*test = new_tuple(1, 1, 1, 1);*/
-  int i = 0, j = 0;
-  while (i < 4)
-  {
-    j = 0;
-    while(j < 4)
-    {
-      matrix[i][j] = j;
-      j++;
-    }
-    i++;
-  }
-  int resm[4][4];
-  print_matrix(matrix, 4, 4);
-  transpose_matrix(matrix, 4, 4, resm);
-  print_matrix(resm, 4, 4);
-  compare_matrix(matrix, matrix, 4, 4);  
-}
-
-int determinant(int matrix[][4])
+float determinant(float matrix[][4])
 {
   int det;
 
@@ -134,7 +134,7 @@ int determinant(int matrix[][4])
   return (det);
 }
 
-void  submatrix(int matrix[][4], int res[][4], int width, int hight,int line, int colmn)
+void  submatrix(float matrix[][4], float res[][4], int width, int hight,int line, int colmn)
 {
   int i;
   int j;
@@ -163,26 +163,26 @@ void  submatrix(int matrix[][4], int res[][4], int width, int hight,int line, in
 }
 
 
-int minor(int matrix[][4], int line, int colmn, int width, int hight)
+float minor(float matrix[][4], int line, int colmn, int width, int hight)
 {
-  int res_matrix[4][4];
+  float res_matrix[4][4];
 
   submatrix(matrix, res_matrix, width - 1, hight - 1, line, colmn);
   return (determinant(res_matrix));
 }
 
 
-int cofactor(int mat[][4], int width, int hight, int line, int colmn)
+float cofactor(float mat[][4], int width, int hight, int line, int colmn)
 {
   if ((line + colmn) % 2 == 0)
     return (minor(mat, line, colmn, width, hight));
   return (-1 * minor(mat, line, colmn, width, hight));
 }
 
-int determinant_tree(int mat[][4], int width, int hight)
+float determinant_tree(float mat[][4], int width, int hight)
 {
   int j;
-  int det;
+  float det;
 
   det = 1;
   j = 0;
@@ -190,17 +190,16 @@ int determinant_tree(int mat[][4], int width, int hight)
   {
     det = det + mat[0][j] * cofactor(mat, width, hight, 0, j);
     j++;
-    printf("i have been here %d\n\n", mat[0][j]);
   }
   return (det);
 }
 
-int determinant_matrix(int mat[][4], int width, int hight)
+float determinant_matrix(float mat[][4], int width, int hight)
 {
   int i;
-  int det;
-  int tmp_det;
-  int sub_matrix[4][4];
+  float det;
+  float tmp_det;
+  float sub_matrix[4][4];
   int sign;
   
   i = 0;
@@ -210,7 +209,6 @@ int determinant_matrix(int mat[][4], int width, int hight)
     tmp_det = 0;
     submatrix(mat, sub_matrix, width, hight, 0, i);
     tmp_det = determinant_tree(sub_matrix, 4, 4);
-    printf("%d\n\n\n", tmp_det);
     if (i % 2 == 0)
       sign = 1;
     else 
@@ -222,30 +220,40 @@ int determinant_matrix(int mat[][4], int width, int hight)
 }
 
 
-void test_determinant()
-{
-  int mat[4][4] = { {-2 , -8 , 3 , 5 }
-                 , {-3 , 1 , 7 ,  3 }
-                  , {1 , 2 , -9 , 6 }
-                  , {-6 , 7 , 7 ,-9} };
-  
-  printf("the det is %d\n\n\n",determinant_matrix(mat, 4, 4));
-}
 
-void  inversion_of_matrix(int mat[][4], int res_mat[][4])
+void  inversion_of_matrix(float mat[][4], float res_mat[][4])
 {
-  int det;
+  float det;
+  float tmp_det;
   int i;
   int j;
+  float sub_matrix[4][4];
 
   i = 0;
   det = determinant_matrix(mat, 4, 4);
   while (i < 4)
   {
+    j = 0;
     while (j < 4)
+    {
+      submatrix(mat, sub_matrix, 4, 4, j, i);
+      tmp_det = determinant_tree(sub_matrix, 4, 4);
+      if ((j + i) % 2 != 0)
+        tmp_det *= -1;
+      res_mat[i][j] = tmp_det / det;
+      j++;
+    }
+    i++;
   }
 }
 
-
-
-
+void test_determinant()
+{
+  float mat[4][4] = { {-5 , 2 , 6 , -8 }
+                , {1 , -5 , 1 ,  8 }
+                , {7 , 7 , -6 , -7}
+                , {1 , -3 , 7 , 4} };
+  float res_mat[4][4];
+  inversion_of_matrix(mat, res_mat);
+  print_matrix(res_mat, 4, 4);
+}
